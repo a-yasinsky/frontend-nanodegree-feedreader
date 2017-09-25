@@ -56,7 +56,7 @@ $(function() {
 
 
     /* TODO: Write a new test suite named "The menu" */
-	describe('The menu',function(){
+	describe('The menu',function() {
 		 const body = $('body');
 		 const menuIcon = $('.menu-icon-link');
 		 /* TODO: Write a test that ensures the menu element is
@@ -64,7 +64,7 @@ $(function() {
          * the CSS to determine how we're performing the
          * hiding/showing of the menu element.
          */
-		it('Menu is hidden by default',function(){
+		it('Menu is hidden by default',function() {
 			// check that div with slide-menu class exist
 			expect($('.slide-menu').length).toBeGreaterThan(0);
 			// check body to have menu-hidden class
@@ -75,7 +75,7 @@ $(function() {
           * should have two expectations: does the menu display when
           * clicked and does it hide when clicked again.
           */
-		it('Menu changes state',function(){
+		it('Menu changes state',function() {
 			// check menu to change state when clicked first time
 			menuIcon.click();
 			expect(body.hasClass('menu-hidden')).toBe(false);
@@ -87,16 +87,28 @@ $(function() {
     
 
     /* TODO: Write a new test suite named "Initial Entries" */
-
-        /* TODO: Write a test that ensures when the loadFeed
+	describe('Initial Entries',function() {
+		/* TODO: Write a test that ensures when the loadFeed
          * function is called and completes its work, there is at least
          * a single .entry element within the .feed container.
          * Remember, loadFeed() is asynchronous so this test will require
          * the use of Jasmine's beforeEach and asynchronous done() function.
          */
+		beforeEach(function(done){
+			loadFeed(0, function() {
+				done();
+			});
+		});
+		
+		it('Loads at least one entry',function() {
+			expect($('.feed').find('.entry').length).toBeGreaterThan(0);
+		});
+	});
 
     /* TODO: Write a new test suite named "New Feed Selection" */
-
+	describe('New Feed Selection',function() {
+		
+	});
         /* TODO: Write a test that ensures when a new feed is loaded
          * by the loadFeed function that the content actually changes.
          * Remember, loadFeed() is asynchronous.
