@@ -48,7 +48,7 @@ $(function() {
 			});
 		 }
 		// rules calling loop
-		for(feed of allFeeds) {
+		for(let feed of allFeeds) {
 			testURL(feed);
 		}
 
