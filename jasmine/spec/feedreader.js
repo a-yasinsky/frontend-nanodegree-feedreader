@@ -36,7 +36,7 @@ $(function() {
          */
 		 // function with rules to be called in loop
 		 function testURL(input) {
-			// checks URL 
+			// checks URL
 			it('URLs are defined', function() {
 				expect(input.url).toBeDefined();
 				expect(input.url.length).not.toBe(0);
@@ -51,7 +51,7 @@ $(function() {
 		for(feed of allFeeds) {
 			testURL(feed);
 		}
-		
+
     });
 
 
@@ -84,7 +84,7 @@ $(function() {
 			expect(body.hasClass('menu-hidden')).toBe(true);
 		});
 	});
-    
+
 
     /* TODO: Write a new test suite named "Initial Entries" */
 	describe('Initial Entries',function() {
@@ -99,7 +99,7 @@ $(function() {
 				done();
 			});
 		});
-		
+
 		it('Loads at least one entry',function() {
 			expect($('.feed').find('.entry').length).toBeGreaterThan(0);
 		});
@@ -113,13 +113,13 @@ $(function() {
          */
 		const feedOldText = $('.feed').text();
 		const lastChildId = $('.feed-list li:last a').data('id');
-				 
+
 		beforeEach(function(done){
 			 loadFeed(lastChildId, function() {
 				done();
 			});
 		});
-		
+
 		it('Content changes after loading',function() {
 			expect(feedOldText !== $('.feed').text()).toBe(true);
 		});
