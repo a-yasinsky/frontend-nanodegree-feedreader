@@ -64,9 +64,9 @@ $(function() {
          */
 		it('Menu is hidden by default',function(){
 			// check that div with slide-menu class exist
-			expect();
+			expect($('.slide-menu').length).toBeGreaterThan(0);
 			// check body to have menu-hidden class
-			expect();
+			expect($('body').hasClass('menu-hidden')).toBe(true);
 		});
 	});
        
