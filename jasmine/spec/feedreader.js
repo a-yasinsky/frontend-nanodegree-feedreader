@@ -66,7 +66,7 @@ $(function() {
          */
 		it('Menu is hidden by default',function() {
 			// check that div with slide-menu class exist
-			expect($('.slide-menu').length).toBeGreaterThan(0);
+			expect($('.slide-menu')[0]).toBeDefined();
 			// check body to have menu-hidden class
 			expect(body.hasClass('menu-hidden')).toBe(true);
 		});
@@ -95,13 +95,11 @@ $(function() {
          * the use of Jasmine's beforeEach and asynchronous done() function.
          */
 		beforeEach(function(done){
-			loadFeed(0, function() {
-				done();
-			});
+			loadFeed(0, done);
 		});
 
 		it('Loads at least one entry',function() {
-			expect($('.feed').find('.entry').length).toBeGreaterThan(0);
+			expect($('.feed .entry').length).toBeGreaterThan(0);
 		});
 	});
 
@@ -111,17 +109,20 @@ $(function() {
          * by the loadFeed function that the content actually changes.
          * Remember, loadFeed() is asynchronous.
          */
-		const feedOldText = $('.feed').text();
-		const lastChildId = $('.feed-list li:last a').data('id');
-
+		let feedOldText, feedNewText;
+		
 		beforeEach(function(done){
-			 loadFeed(lastChildId, function() {
-				done();
+			loadFeed(0, function() {
+				feedOldText = $('.feed').text();
+				loadFeed(1, function() {
+					feedNewText = $('.feed').text();
+					done();
+				});
 			});
 		});
 
 		it('Content changes after loading',function() {
-			expect(feedOldText !== $('.feed').text()).toBe(true);
+			expect(feedOldText).not.toBe(feedNewText);
 		});
 	});
 }());
